@@ -1,0 +1,11 @@
+
+<mat-toolbar color="primary">
+    <a mat-button routerLink="/login" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">Login</a>
+    <span class="spacer"></span>
+<span>
+    <a mat-button routerLink="/signup" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">SignUp</a>
+</span>
+<span>
+    <button (click)="onLogout()" *ngIf="userIsAuthenticated">Logout</button>
+</span>
+</mat-toolbar>

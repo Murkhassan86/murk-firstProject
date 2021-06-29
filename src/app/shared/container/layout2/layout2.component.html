@@ -1,0 +1,120 @@
+
+<div class="layout-content h-100">
+    <div class="d-flex align-items-start h-100">
+      <div class="layout-sidebar py-4" *ngIf="!isMobile">
+        <div class="user--area mb-4 text-center">
+          <strong class="d-block logo mb-4">
+            <a href="/">
+              <img src="assets/images/pic18.png" alt="logo">
+            </a>
+          </strong>
+  
+          <div class="user--info border-bottom pb-3">
+            <!-- <img src="assets/images/user-icon-image.png" width="70" alt="" class="user-icon rounded-circle d-block mb-4"> -->
+            <span class="name d-block font--md">{{ userInfo?.firstName }}</span>
+            <span class="role text-success d-block font--sm">{{ userInfo?.role }}</span>
+          </div>
+        </div>
+        <div class="main--nav">
+          <ul class="nav--list"  *ngFor="let asideItems of menuList.getAll()">
+             <li  *ngFor="let asideItem of asideItems.main">
+              <div *ngIf="asideItem?.state !== 'logout'">
+              <a [routerLink]="['/' + asideItem?.state]" routerLinkActive="active">
+                <i class="icon md {{asideItem?.icon}}"></i>
+                <span class="text">{{asideItem?.name}}</span>
+              </a>
+              </div>
+            </li>
+            <li>
+              <a href="javascript:void(0);" (click)="signOut()">
+                <i class="icon sm icon-Logout"></i>
+                <span class="text">logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="layout-main-panel pl-sm-0 height-100">
+         <div class="navbar-brand-wrapper full-width header-wrapper ml-0">
+              <cuppa-slidemenu *ngIf="isMobile" [config]="config"  class="d-flex h-100" [menulist]="menuItemsArray2" (onItemSelect)="onItemSelect($event)"></cuppa-slidemenu>
+              <app-main-header  [userInfo]="userInfo" class="d-inline-flex full-width"></app-main-header>
+             
+              <!-- <app-user-profile [userInfo]="userInfo"></app-user-profile> -->
+         <!-- <header id="header" class="main-sub--header full-width header d-flex justify-content-between p-sm-0">
+          <div class="user--info d-flex align-items-center justify-content-end">
+              <ul class="user-actions--list d-flex align-items-center justify-content-end">
+                  <li class="pr-0" *ngIf="userInfo?.role === 'Admin'">
+                      <a href="javascript:void(0)" class="">
+                        <i class="fa fa-users"></i>
+                        <span class="notification d-flex align-items-center justify-content-center" >{{allUsers}}</span>
+                      </a>
+                      <div class="users-notification--section">
+                        <div class="head d-flex align-items-center justify-content-between">
+                          <span>Notification</span>
+                          <a href="javascript:void(0)" class="text-primary font-weight-bold">Mark All as read</a>
+                        </div>
+                        <ul class="notification-list list-unstyled" *ngIf="false">
+                             <li class="d-flex align-items-center justify-content-between"></li>
+                           <li class="d-flex align-items-center justify-content-between">
+                                      <div class="leftCol d-flex align-items-center">
+                                        <div class="icon-holder">
+                                        <img class="img-fluid" src="assets/images/team-img002.png" alt="">
+                                        </div>
+                                        <div class="notification-info">
+                                          <h6 class="mb-0">Usman Raja</h6>
+                                          <p class="m-0">Wages of Labors are due soon.</p>
+                                        </div>
+                                      </div>
+                                      <div class="rightCol text-right">
+                                        <span class="time d-block">15 mins ago</span>
+                                        <a href="javascript:void(0)" class="more-options"><span></span></a>
+                                      </div>
+                                    </li>
+                            <li class="d-flex align-items-center justify-content-between">
+                                <div class="leftCol d-flex align-items-center">
+                                  <div class="icon-holder">
+                                        <img class="img-fluid" src="assets/images/team-img002.png" alt="">
+                                  </div>
+                                  <div class="notification-info">
+                                    <h6 class="mb-0">Ali</h6>
+                                    <p class="m-0">Heat warning in Shed 1.</p>
+                                  </div>
+                                </div>
+                                <div class="rightCol text-right">
+                                  <span class="time d-block">15 mins ago</span>
+                                  <a href="javascript:void(0)" class="more-options"><span></span></a>
+                                </div>
+                              </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="position-relative p-0">
+                      <div class="container-menu">
+                        <button class="btn custom-dropdown ml-3">
+                        <span class="d-flex justify-content-end"><img src="assets/images/user-icon-image.png" alt="" class="user-icon m-0 rounded-circle d-block drowndown"></span><i class="fa-arrow-down"></i>
+                          <ul class="dropdown list-unstyled">
+                            <li class="text-center"><a href="javascript:void(0)" style="border-bottom: none">{{ userInfo?.firstName }}</a></li>
+                            <li class="text-center"><a href="javascript:void(0)" class="p-0"><b>{{ userInfo?.role }}</b></a></li>
+                            <li class="text-center" routerLink="/admin/user-profile"><a href="javascript:void(0)" class="p-0"><b>Profile</b></a>
+                            </li>
+                            <li class="text-center"><a href="javascript:void(0)" (click)="clickHandler.emit($event)">Log Out</a></li>
+                          </ul>
+                        </button>
+                      </div>
+                     </li>
+              </ul>
+          </div>
+      
+      </header> -->
+      
+      
+            </div>
+  
+        <div class="main-content">
+         <router-outlet></router-outlet>
+       </div>
+      </div>
+    </div>
+  </div>
+  
+

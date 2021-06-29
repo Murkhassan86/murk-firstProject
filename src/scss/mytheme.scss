@@ -1,0 +1,169 @@
+/*! Application Bootstrap 4 Theme
+ *
+ *  Built on top of Bootstrap 4 (https://getbootstrap.com)
+ *
+ */
+
+ @import 'variables';
+
+ $fa-font-path : '~font-awesome/fonts';
+ @import '~font-awesome/scss/font-awesome';
+ 
+//  @import '~bootstrap/scss/bootstrap';
+//  @import 'components/index';
+ 
+ body {
+   scroll-behavior: smooth;
+ }
+ .social-icons {
+//    @extend %listreset;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   li {
+     margin: 0 5px;
+     a {
+       width: 40px;
+       height: 40px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border-radius: 50%;
+       background: $dark;
+       color: $white;
+       text-decoration: none;
+       &.facebook-icon {
+         background: #5267A0;
+       }
+       &.twitter-icon {
+         background: #24A4EF;
+       }
+       &:hover {
+         background: $dark;
+       }
+     }
+   }
+ }
+ .file-attachment {
+   position: relative;
+   display: inline-block;
+   vertical-align: top;
+   padding: 10px 20px;
+   background: $blue-shade;
+   border-radius: 40px;
+   min-width: 120px;
+   &:before {
+     position: relative;
+     content: '';
+     width: 16px;
+     height: 21px;
+     background: url("/assets/images/pdf.svg") no-repeat;
+     background-size: 16px 21px;
+     display: inline-block;
+     vertical-align: middle;
+     margin-right: 15px;
+   }
+ }
+ .lab-test--attachment {
+   position: relative;
+   display: inline-block;
+   vertical-align: top;
+   padding: 10px 20px;
+   background: $blue-shade;
+   border-radius: 40px;
+   min-width: 120px;
+   i {
+     color: theme-color(secondary);
+     font-size: 20px;
+     margin-right: 10px;
+   }
+ }
+ 
+ .check-box--holder {
+   .custom-checkbox--label {
+     position: relative;
+     background: $white;
+     border: 1.5px solid #D9D9D9;
+     box-sizing: border-box;
+     border-radius: 2px;
+     width: 18px;
+     height: 18px;
+     margin-bottom: 0;
+     &:after {
+    //    @extend %transition;
+       content: "\e91b";
+       font-family: 'icomoon' !important;
+       position: absolute;
+       left: 3px;
+       top: -3px;
+       font-size: 12px;
+       color: theme-color(secondary);
+       transform: scale(0);
+       transform-origin: center;
+     }
+   }
+   .custom-checkbox {
+     position: absolute;
+     width: 20px;
+     height: 20px;
+   }
+   .custom-checkbox:checked + label{
+     &:after {
+    //    @extend %transition;
+       transform: scale(1);
+     }
+   }
+   .text {
+ 
+   }
+ }
+ 
+ 
+ .contact-btn--list {
+   a,
+   button {
+     border-radius: 50%;
+     background: theme-color(primary);
+     color: $white;
+     width: 40px;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 27px;
+     border: 0;
+     margin-right: 10px;
+     &.sm {
+       font-size: 18px;
+     }
+     &.md {
+       font-size: 24px;
+     }
+     &:hover {
+       background: theme-color(secondary);
+       text-decoration: none;
+     }
+   }
+ }
+ 
+ .btn--prev, .btn--next {
+   width: 32px;
+   height: 64px;
+   border-radius: 0 32px 32px 0;
+   background: $font;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 2px 7px 0 0;
+   color: $white;
+   &:hover,
+   &.active {
+     background: theme-color(primary);
+     color: $white;
+   }
+ }
+ .btn--next {
+   border-radius: 32px 0 0 32px;
+   padding: 0 0 0 7px;
+ }
+ 

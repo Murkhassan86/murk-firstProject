@@ -1,0 +1,182 @@
+// stylelint-disable selector-no-qualifying-type
+@import "src/scss/base/index";
+
+//
+// Textual form controls
+//
+.form-control {
+  border: none;
+  border-bottom: $input-border-width solid $input-border-color;
+  box-shadow: none;
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  @include border-radius(0, 0);
+
+}
+
+select.form-control {
+  &:focus::-ms-value {
+    // Suppress the nested default white text on blue background highlight given to
+    // the selected option text when the (still closed) <select> receives focus
+    // in IE and (under certain conditions) Edge, as it looks bad and cannot be made to
+    // match the appearance of the native widget.
+    // See https://github.com/twbs/bootstrap/issues/19398.
+    color: $input-color;
+    background-color: $input-bg;
+  }
+}
+
+
+// Custom Form groups
+//
+.custom-form-group {
+  position: relative;
+  .custom-form-label {
+    color: $gray;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    transition: transform .2s ease-out, color .2s ease-out, -webkit-transform .2s ease-out;
+    transform: translateY(12px);
+    transform-origin: 0% 100%;
+  }
+  .custom-form-label.active,
+  input:focus + .custom-form-label,
+  textarea:focus + .custom-form-label{
+    transform: translateY(-16px) scale(0.8);
+    color: $dark;
+  }
+  textarea {
+    resize: none;
+  }
+  .custom-form-select {
+    position: relative;
+    &:after {
+      position: absolute;
+      right: 0;
+      top: -20px;
+      content: "\e92f";
+      font-family: 'icomoon' !important;
+      color: theme-color(primary);
+      font-size: 12px;
+      pointer-events: none;
+    }
+    select {
+      appearance: none;
+      padding: $input-padding-y 0;
+    }
+  }
+}
+
+// Search Form groups
+//
+.search-form {
+  border-radius: 80px;
+  background: $white;
+  width: 310px;
+  .form-control {
+    border: none;
+    height: 40px;
+    padding: 0 10px;
+    background: none;
+  }
+}
+
+.custom-upload {
+  &:hover {
+    label {
+      cursor: pointer;
+      background: theme-color(secondary);
+      color: $white;
+
+      i {
+        color: $white;
+      }
+    }
+  }
+  input {
+    cursor: pointer;
+    height: 40px;
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+  label {
+    overflow: hidden;
+    background: rgba(70, 128, 255, 0.25);
+    border: 0.798226px solid rgba(70, 128, 255, 0.25);
+    box-sizing: border-box;
+    border-radius: 70px;
+    text-align: center;
+    color: theme-color(dark);
+    padding: 5px;
+    height: 40px;
+    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      background: theme-color(secondary);
+      color: $white;
+      i {
+        color: $white;
+      }
+    }
+    i {
+      font-size: 24px;
+      color: theme-color(secondary);
+      padding: 0 13px;
+    }
+    &:after {
+      display: none;
+    }
+  }
+}
+.custom-upload02 {
+  position: relative;
+  display: inline-block;
+  height: auto;
+  margin-bottom: 0;
+  &:hover {
+    label {
+      cursor: pointer;
+      color: theme-color(secondary);
+      span {
+        color: theme-color(secondary);
+      }
+    }
+  }
+  input {
+    cursor: pointer;
+    height: 40px;
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+  label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    color: theme-color(primary);
+    padding: 5px;
+    height: auto;
+    margin-bottom: 0;
+    cursor: pointer;
+    text-align: left;
+    &:hover {
+      cursor: pointer;
+      background: theme-color(secondary);
+      color: $white;
+    }
+    span {
+      color: $font;
+    }
+    &:after {
+      display: none;
+    }
+  }
+}

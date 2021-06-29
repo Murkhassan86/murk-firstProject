@@ -1,0 +1,270 @@
+<div class=" mt-5">
+    <div class="card custom-box-shadow">
+        <div class="card-body">
+            <form class="col-lg-12 col-md-12 col-sm-12" [formGroup]="deliveryForm">
+            <div class="row">
+                <h4>Delivery Information</h4>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-8">
+                    <div class="row mt-3">
+                <div class="col-lg-6">
+                    <label for="fullName">Full Name</label>
+                    <div class="form-group custom-form-group">
+                        <input type="text" class="form-control custom-form-control" placeholder="Enter first and last Name" formControlName="fullName">
+                        <span *ngIf="(this.deliveryForm.get('fullName').touched || submitted ) && this.deliveryForm.get('fullName').errors?.required" class="text-danger">
+                            Please Enter Full Name
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label for="province">Province</label>
+                    <div class="form-group custom-form-group">
+                        <select class="form-control custom-form-control" (change)="onChangeProvince($event.target.value)" formControlName="province">
+                            <option selected disabled>Select Province</option>
+                            <option *ngFor="let province of provinces" [value]="province"> {{province}} </option>   
+                        </select>
+                        <span *ngIf="(this.deliveryForm.get('province').touched || submitted ) && this.deliveryForm.get('province').errors?.required" class="text-danger">
+                            Please Select Province
+                        </span>
+                       
+                    </div>
+                     <!-- <ng-select [items]="provinces"
+                        bindLabel="name"
+                        autofocus
+                        bindValue="id"
+                        >
+                    </ng-select> -->
+                            <!-- <ng-option *ngFor="let province of provinces" [value]="province"> {{province}} </ng-option> -->
+                     
+                  
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <label for="phoneNumber">Phone Number</label>
+                    <div class="form-group custom-form-group">
+                        <input type="number" class="form-control custom-form-control" placeholder="Please Enter Phone Number" formControlName="phoneNumber">
+                        <span *ngIf="(this.deliveryForm.get('phoneNumber').touched || submitted ) && this.deliveryForm.get('phoneNumber').errors?.required" class="text-danger">
+                            Please Select Province
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label for="city">City</label>
+                    <div class="form-group custom-form-group" >
+                        <!-- <ng-select class="form-control custom-form-control" *ngIf="this.selectedProvince === 'Sindh'">
+                            <ng-option *ngFor="let city of sindhProvince"> {{city}} </ng-option>
+                        </ng-select> -->
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Azad Kashmir'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of kashmirProvince" > {{city}} </option>
+                        </select>
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Sindh'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of sindhProvince" > {{city}} </option>
+                        </select>
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Punjab'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of punjabProvince" > {{city}} </option>
+                        </select>
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Khyber-Pakhtunkhwa'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of khyberProvince" > {{city}} </option>
+                        </select>
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Balochistan'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of balochistanProvince" > {{city}} </option>
+                        </select>
+                      
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Gilgit-Baltistan'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of baltistanProvince" > {{city}} </option>
+                        </select>
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Islamabad'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of islamabad" > {{city}} </option>
+                        </select>
+                        <select class="form-control custom-form-control" *ngIf="selectedProvince === 'Federally Administered Tribal Areas'" formControlName="provinceName">
+                            <option selected disabled>Select City</option>
+                            <option *ngFor="let city of tribalAreas" > {{city}} </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <label for="emailAddress">Email Address</label>
+                    <div class="form-group custom-form-group">
+                        <input type="text" class="form-control custom-form-control" placeholder="Enter Email Address" formControlName="email">   
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label for="address">Address</label>
+                    <div class="form-group custom-form-group">
+                        <input type="text" class="form-control custom-form-control" placeholder="For Example: House# 123, Street# 123, ABC" formControlName="address">
+                    </div>
+                </div>
+            </div>
+            <div class="alert" [ngClass]="{'alert-success': apiResponse?.success, 'alert-danger': apiResponse?.failure }" *ngIf="apiResponse?.success || apiResponse?.failure">
+                <span *ngIf="apiResponse?.success"><strong>Delivery Information submitted successfully! <b>Click to proceed button for confirmation!</b></strong></span>
+                <span *ngIf="apiResponse?.failure"><strong> Error! Something Went Wrong</strong></span>
+            </div>
+            <div class="row mt-3 justify-content-end">
+                <button class="btn btn-info" (click)="sendDeliveryInfo(deliveryForm.value)" >Save
+                    <div class="spinner-border text-dark" *ngIf="apiResponse?.inProcess"></div>
+                </button>
+            </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card custom-box-shadow">
+                        <div class="card-body">
+                    <h4>Order Summary</h4>
+ 
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <p><strong>Price</strong></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p><strong>Rs.</strong> {{dressData?.dress.price}}</p>
+                           
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <p><strong>Shipping Fee</strong></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p><strong>Rs.</strong> 100 </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <p><strong class="text-muted">Subtotal (1 items)</strong></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p><strong> Rs. {{dressPrice}} </strong></p>
+                        </div>
+                    </div>
+                    <div class="alert" [ngClass]="{'alert-success': apiResponseProceed?.success, 'alert-danger': apiResponseProceed?.failure }" *ngIf="apiResponseProceed?.success || apiResponseProceed?.failure">
+                        <span *ngIf="apiResponseProceed?.success"><strong>Delivery information is confirmed! <b> Click here to <a  (click)="open(generateSlip)"> generate slip </a></b></strong></span>
+                        <span *ngIf="apiResponseProceed?.failure"><strong> Error! Something Went Wrong</strong></span>
+                    </div>
+                    <div class="row mt-3">
+                        <button class="btn btn-primary btn-block" (click)="proceed()">Proceed
+                            <div class="spinner-border text-dark" *ngIf="apiResponseProceed?.inProcess"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+       
+    </form>
+    </div>
+</div>
+
+<!-- slip modal-->
+<ng-template size="lg" #generateSlip let-modal>
+    <div class="modal-header border-0">
+      <h1 class="modal-title text-center flex-fill p-t-50 p-b-20" id="modal-basic-title02">Order Slip</h1>
+      <button type="button" class="close icon-Cross" aria-label="Close"
+        (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body row justify-content-center">
+                <div class="card custom-box-shadow w-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                            <img [src]="dressData?.dress?.image" class="w-100"></div>
+                        </div>
+                        <div class="row" *ngIf="dressData?.dress?.category === 'dress'">
+                            <div class="col-lg-9">
+                                <p><strong>Fabric:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{dressData?.dress?.fabric}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg-9">
+                                <p><strong>Price:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{dressData?.dress?.price}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg-9">
+                                <p><strong>Color:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{dressData?.dress?.color}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="dressData?.dress?.category === 'foot-wear'" >
+                            <div class="col-lg-9">
+                                <p><strong>Size:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p> {{dressData?.dress?.size}} </p>
+                            </div>
+                        </div>
+                        <div class="row mt-2" *ngIf="dressData?.dress?.category !== 'jwelery'" >
+                            <div class="col-lg-9">
+                                <p><strong> Age:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p> {{dressData?.dress?.age}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg-9">
+                                <p><strong>Dispatch Date:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{dispatchDate | date: 'dd/MM/yyyy' }}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-9">
+                                <p><strong>Arrival Date:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p> {{arrivalDate | date: 'dd/MM/yyyy'}} </p>
+                            </div>
+                        </div>
+                        <div class="row mt-2"  *ngFor="let customerInfo of deliveryList">
+                            <div class="col-lg-9">
+                               <p><strong> Full Name:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{customerInfo?.fullName}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2"  *ngFor="let customerInfo of deliveryList">
+                            <div class="col-lg-9">
+                               <p><strong> Contact Number:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{customerInfo?.phoneNumber}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2"  *ngFor="let customerInfo of deliveryList">
+                            <div class="col-lg-9">
+                               <p><strong> Address:</strong></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <p>{{customerInfo?.address}}</p>
+                            </div>
+                        </div>
+            </div>
+        </div>  
+ 
+    <div class="row mt-5 justify-content-center" *ngFor="let customerInfo of deliveryList">
+        <button class="btn btn-success btn-lg btn-block"> Save </button>
+        <button class="btn btn-primary btn-lg btn-block"  (click)="generatePdf(customerInfo)">Download</button>
+    </div>
+
+</div>
+</ng-template>

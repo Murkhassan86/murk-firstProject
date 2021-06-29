@@ -1,0 +1,24 @@
+<!-- <mat-toolbar color="primary"> -->
+    <div class="container mt-5 pl-5 pr-5 m-5">
+        <table class="table table-hover mt-5">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>User Email</th>
+                    <th>User Password</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users; let i = index">
+                    <td> {{user?._id}} </td>
+                    <td> {{user?.email}} </td>
+                    <td> {{user?.password}} </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteUser(user, i)">delete</button> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- </mat-toolbar> -->

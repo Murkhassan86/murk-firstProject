@@ -1,0 +1,19 @@
+@import '../../../../scss/base/index';
+
+.data-blocks--container {
+//   color: $card-font;
+  //min-width: 200px;
+  margin-right: 15px;
+  width: auto;
+//   @include media-breakpoint-down(md) {
+//     margin-right: 0;
+//   }
+  .info-card-details--title {
+    font-weight: 500;
+    color: inherit;
+  }
+  .info-card-details--value {
+    font-weight: 300;
+    color: inherit;
+  }
+}

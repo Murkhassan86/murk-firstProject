@@ -1,0 +1,23 @@
+<ngb-tabset type="pills" class="w-100 bg-transparent" [justify]="currentJustify">
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+           <span class="tab-title">
+            Record of SignUp and Login Users
+        </span>
+        </ng-template>
+        <ng-template ngbTabContent>
+            <app-login-signup-users-monitoring-chart *ngIf="isSignUpUsers" [signUpUsers]="signUpUsersList"  [loginUsers]="loginUsers"></app-login-signup-users-monitoring-chart>
+            
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            <span class="tab-title">
+            Buckets Items
+        </span>
+        </ng-template>
+        <ng-template ngbTabContent>
+           <app-bucket-monitoring *ngIf="isBucket" [bucketList]="bucketList" [approvedStatus]="getApproveStatus" [rejectedStatus]="getRejectedStatus" [pendingStatus]="getPendingStatus"></app-bucket-monitoring>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

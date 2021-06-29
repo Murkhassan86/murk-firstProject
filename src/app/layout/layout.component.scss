@@ -1,0 +1,226 @@
+.video-container {
+  // margin: 20px;
+  padding: 20px;
+  background-color: #97e2f5 ;
+
+}
+.custom-box-shadow {
+    -webkit-box-shadow: 0px 1px 7px -2px rgba(0,0,0,0.98)  !important;
+    -moz-box-shadow: 0px 1px 7px -2px rgba(0,0,0,0.98)  !important;
+    box-shadow: 0px 1px 7px -2px rgba(0,0,0,0.98)  !important;
+  }
+
+  .carousel-inner{
+    width:90%;
+    max-height: 400px !important;
+  
+  }
+  a {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .custom-box-shadow {
+    -webkit-box-shadow: 0px 1px 7px -2px rgba(0,0,0,0.98)  !important;
+    -moz-box-shadow: 0px 1px 7px -2px rgba(0,0,0,0.98)  !important;
+    box-shadow: 0px 1px 7px -2px rgba(0,0,0,0.98)  !important;
+  }
+  .dropdown:hover > .dropdown-menu {
+    display: block;
+}
+  // .carousel-item > img {
+  //   position: absolute;
+  //   // top: 50%;
+  //   // left: 50%;
+  //   // // transform: translate(-50%, -50%);
+  //   // min-width: 100%;
+  //   // height: 40rem;
+  //   // margin: 0 auto;
+  // }
+  .carousel-item > img {
+    height: 700px;
+    // position: relative;
+    
+    
+  }
+  .row  {
+    position: relative;
+  }
+
+  .row .btn {
+  //   position:  absolute;
+  //   // position: center;
+  // // top: 72%;
+  // left: 50%;
+  // width: 90%;
+  // transform: translate(-50%, -50%);
+  // // -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  }
+
+  .btn .span1 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .btn .span1:after {
+    content: 'price: 5000';
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: -10px;
+    transition: 0.5s;
+  }
+  .btn:hover .span1 {
+    padding-top: 35px;
+  }
+  .btn:hover .span1:after {
+    opacity: 1;
+    right: 0;
+
+  }
+  //span2
+  .btn .span2 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  .btn .span2:after {
+    content: 'RS:10000-50000';
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: -10px;
+    transition: 0.5s;
+  }
+  .btn:hover .span2 {
+    padding-top: 35px;
+  }
+  .btn:hover .span2:after {
+    opacity: 1;
+    right: 0;
+  } 
+  
+  //span3 
+  .btn .span3 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  .btn .span3:after {
+    content: 'RS:2000-50000';
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: -10px;
+    transition: 0.5s;
+  }
+  .btn:hover .span3 {
+    padding-top: 35px;
+  }
+  .btn:hover .span3:after {
+    opacity: 1;
+    right: 0;
+  } 
+
+  //span4
+  .btn .span4 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  .btn .span4:after {
+    content: 'RS:5000-10000';
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: -10px;
+    transition: 0.5s;
+  }
+  .btn:hover .span4 {
+    padding-top: 35px;
+  }
+  .btn:hover .span4:after {
+    opacity: 1;
+    right: 0;
+  } 
+
+  //span5
+  .btn .span5 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+  }
+  .btn .span5:after {
+    content: 'RS:5000-10000';
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: -10px;
+    transition: 0.5s;
+  }
+  .btn:hover .span5 {
+    padding-top: 35px;
+  }
+  .btn:hover .span5:after {
+    opacity: 1;
+    right: 0;
+  } 
+
+  //span6
+  
+  .btn .span6 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  .btn .span6:after {
+    content: 'RS:5000-10000';
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: -10px;
+    transition: 0.5s;
+  }
+  .btn:hover .span6 {
+    padding-top: 35px;
+  }
+  .btn:hover .span6:after {
+    opacity: 1;
+    right: 0;
+  } 
+  .image { 
+    position: relative; 
+    width: 100%; /* for IE 6 */
+    height: 90%;
+ }
+ 
+ h2 { 
+    position: absolute; 
+    top: 30px; 
+    left: 55%; 
+    width: 100%; 
+ }
+ h2 span { 
+  color: white; 
+  font: bold 24px/45px Helvetica, Sans-Serif; 
+  letter-spacing: -1px;  
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px; 
+  cursor: pointer;
+}

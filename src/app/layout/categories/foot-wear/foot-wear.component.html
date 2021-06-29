@@ -1,0 +1,15 @@
+<app-header2></app-header2>
+<div class="row justify-content-center mt-5" *ngIf="footWearList.length === 0">
+    <h4>No Record Found!!!!</h4>
+</div>
+<div class="container-view mt-5" *ngIf="footWearList.length > 0">
+    <div class="row pl-5 pr-5">
+        <div class="col-lg-3" *ngFor="let footWear of footWearList">
+            <div class="image">
+            <img [src]="footWear.image">
+            <h2 (click)="onSelectFootWear(footWear, i)"><span>View</span></h2>
+        </div>
+        </div>
+
+    </div>
+</div>

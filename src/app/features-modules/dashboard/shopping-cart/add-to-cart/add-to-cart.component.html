@@ -1,0 +1,45 @@
+<div class="bucket-container" *ngFor="let data of deliveryList">
+<div class="card custom-box-shadow mt-5 " >
+  <div class="card-body">
+    <div class="row" >
+      <div class="col-lg-4">
+        <img [src]="dressData?.dress?.image">
+      </div>
+  
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-12" *ngIf="dressData?.category === 'dress' ">
+            <p><strong>Fabric</strong><span> {{dressData?.dress?.fabric}} </span></p>
+          </div>
+          <div class="col-lg-12" *ngIf="dressData?.category !== 'jwelery' ">
+            <p><strong>Age</strong><span> {{dressData?.dress?.age}} </span></p>
+          </div>
+          <div class="col-lg-12" *ngIf="dressData?.category === 'foot-wear' ">
+            <p><strong>Size</strong><span> {{dressData?.dress?.size}} </span></p>
+          </div>
+          <div class="col-lg-12">
+            <p><strong>Color</strong><span> {{dressData?.dress?.color}} </span></p>
+          </div>
+          <div class="col-lg-12">
+            <p><strong>Price</strong><span> {{dressData?.dress?.price}} </span></p>
+          </div>
+          <div class="col-lg-12">
+            <p><strong>Description</strong><span> {{dressData?.dress?.description}} </span></p>
+          </div>
+          <div class="col-lg-12" *ngIf="data?._id === dressData?.dress?._id && data?.status === 'Approved'">
+            <button class="btn btn-primary" (click)="addToCart()">Add To Cart</button>
+           </div>
+           <div class="col-lg-12" *ngIf="data?._id === dressData?.dress?._id && data?.status === 'added-to-cart'">
+            <button class="btn btn-primary" (click)="addToCart()">Added To Cart</button>
+           </div>
+           <div class="col-lg-12">
+            
+            <p>{{timeLeft}} Seconds Left....</p>
+           </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+</div>

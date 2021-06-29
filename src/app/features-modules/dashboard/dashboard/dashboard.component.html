@@ -1,0 +1,38 @@
+<!-- 
+<mat-toolbar color="primary">
+
+    <span>
+        <button class="btn btn-primary" (click)="onLogout()">Logout</button></span>
+        <span class="spacer"></span>
+      
+           <button class="btn btn-primary"> 
+               <a routerLink="/loginRecord" routerLinkActive="active" style="color:black">Login Users Record</a></button>
+            <button class="btn btn-primary">
+               <a routerLink="/dashboard/signUpRecord" routerLinkActive="active" style="color:black">SignUp Records</a></button>
+                <button class="btn btn-primary">
+                    <a routerLink="/calendar" routerLinkActive="active" style="color: black">Calendar</a>
+                </button>
+</mat-toolbar> -->
+<!-- <app-layout2></app-layout2> -->
+<div class="container">
+    <ngb-tabset class="bg-white" [destroyOnHide]="false" type="pills" [justify]="currentJustify">
+        <!-- <ngb-tab>
+            <ng-template ngbTabTitle>
+                <div class="custom-pills">
+                    User's Items
+                </div>      
+            </ng-template>
+            <ng-template ngbTabContent>
+                <app-useritems></app-useritems>
+            </ng-template>
+        </ngb-tab> -->
+        <ngb-tab>
+            <ng-template ngbTabTitle>
+                Add Users
+            </ng-template>
+            <ng-template ngbTabContent>
+                <app-add-users></app-add-users>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>

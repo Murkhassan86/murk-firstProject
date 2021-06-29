@@ -1,0 +1,19 @@
+
+<ngb-tabset [destroyOnHide]="false" type="pills">
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            Purchasing Items
+        </ng-template>
+        <ng-template ngbTabContent>
+            <app-purchasing-item [dressData]="dressData"></app-purchasing-item>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            Add To Cart
+        </ng-template>
+        <ng-template ngbTabContent>
+            <app-add-to-cart [dressData]="dressData"></app-add-to-cart>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

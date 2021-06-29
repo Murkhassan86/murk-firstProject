@@ -1,0 +1,97 @@
+<div class="row mt-5 justify-content-end">
+    <div class="col-lg-3">
+        <button class="btn1 btn btn-primary" (click)="open(userInfo, 'add')"><i class="icon-Add"></i>Add User</button>
+    </div>
+</div>
+
+<div class="card custom-box-shadow mt-5" *ngFor="let user of userInfoList; index as i">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-10">
+                <p><strong>Name:</strong><span> {{user?.firstName}} {{user?.lastName}} </span></p>
+                <p><strong>Country:</strong><span> {{user?.country}} </span></p>
+                <p><strong>Date Of Birth:</strong> <span> {{user?.birthDate | date}} </span></p>
+            </div>
+            <div class="col-lg-2">
+                <span *ngIf="false">
+                    <i class="icon-Edit"></i></span>
+                    <span><i class="icon-Delete ml-3" (click)="deleteUser(user, i)"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #userInfo let-modal>
+<div class="modal-header border-0">
+    <h1 *ngIf="!isEditUser" class="modal-title text-center flex-fill p-t-50 p-b-20" id="modal-basic-title02">Add User</h1>
+    <h1 *ngIf="isEditUser" class="modal-title text-center flex-fill p-t-50 p-b-20" id="modal-basic-title02">Edit User</h1>
+    <button type="button" class="close icon-Cross" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body row justify-content-center">
+    <form [formGroup]="userInfoForm" class="col-sm-12 col-md-12 col-lg-12 pl-5 pr-5">
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                 <label for="firstName" class="custom-form-label">First Name</label>
+                <div class="form-group custom-form-group mb-1 p-b-3">
+                   <input type="text" formControlName="firstName" class="form-control custome-form-control">
+                    <span class="text-danger" *ngIf="(userInfoForm.get('firstName').touched || submitted) && userInfoForm.get('firstName').errors?.required">
+                        First Name is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                 <label for="lastName" class="custom-form-label">Last Name</label>
+                <div class="form-group custom-form-group mb-1 p-b-3">
+                   <input type="text" formControlName="lastName" class="form-control custome-form-control">
+                   <span class="text-danger" *ngIf="(userInfoForm.get('lastName').touched || submitted) && userInfoForm.get('lastName').errors?.required">
+                    last Name is required
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                 <label for="country" class="custom-form-label">Country</label>
+                <div class="form-group custom-form-group mb-1 p-b-3">
+                  <select class="form-control custome-form-control" formControlName="country">
+                      <option value="" selected disabled>Select Country</option>
+                      <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                  </select>
+                  <span class="text-danger" *ngIf="(userInfoForm.get('country').touched || submitted) && userInfoForm.get('country').errors?.required">
+                    Please select any country
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                 <label for="date" class="custom-form-label">Birth Date</label>
+                <div class="form-group custom-form-group mb-1 p-b-3">
+                  <input type="date" formControlName="birthDate" class="form-control custome-form-control">
+                  <span class="text-danger" *ngIf="(userInfoForm.get('birthDate').touched || submitted) && userInfoForm.get('birthDate').errors?.required">
+                   Birth Date is required
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="alert" [ngClass]="{'alert-success': apiResponse?.success, 'alert-danger': apiResponse?.error }" *ngIf="apiResponse?.success || apiResponse?.error">
+            <span *ngIf="apiResponse?.success && !isEditUser" ><strong>User Created Successfully</strong></span>
+           <span *ngIf="apiResponse?.success && isEditUser"><strong>User Updated Successfully</strong></span>
+            <span *ngIf="apiResponse?.error"><strong>Error! Something went wrong</strong></span>
+        </div>
+        <div class="row justify-content-end mt-3">
+            <button *ngIf="!isEditUser" class="btn btn-primary" (click)="createUser(userInfoForm.value)">Create
+                <div class="spinner border text-dark" *ngIf="apiResponse?.inProcess"></div>
+            </button>
+            <button *ngIf="isEditUser" class="btn btn-primary" (click)="updateUser(userInfoForm.value)">Update
+                <div class="spinner border text-dark" *ngIf="apiResponse?.inProcess"></div>
+            </button>
+        </div>
+    </form>
+</div>
+</ng-template>

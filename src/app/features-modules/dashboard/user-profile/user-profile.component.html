@@ -1,0 +1,92 @@
+
+<!--Users Details Card-->
+<div class="user-details--card mb-5">
+    <div class="head" *ngIf="false">
+      <button class="btn-iconsText"><i class="icon-Edit"></i> Edit</button>
+    </div>
+    <div class="card--body row align-items-start">
+      <div class="user--info pr-md-4 col-lg-4  text-center">
+          <h2 class="text-uppercase">Profile Details</h2>
+        <div class="img--holder mb-4">
+          <img class="img-fluid img-responsive" src="assets/images/user-profile.jpg" alt="">
+        </div>
+         <h2> <i class="icon-Labor text-secondary mb-3"></i> {{ name }} {{lastName}}</h2> <br>
+         <p class="font--lg subText text-uppercase">{{role}}</p>
+     </div>
+      <div class="user--sub-info flex-fill col-lg-8 row">
+  
+        <div class="col-lg-12 col-sm-12 col-md-12">
+          <div class="rowCol">
+            <h4><i class="icon-Location text-secondary"></i> Email</h4>
+            <a href="#" class="subText">{{email}}</a>
+          </div>
+          <div class="rowCol">
+            <h4><i class="icon-Phone text-secondary"></i> Phone</h4>
+               <a href="#" class="tell h2 text-secondary">{{phone}}</a>
+          </div>
+          <div class="rowCol" >
+            <h4><i class="icon-Hospital text-secondary"></i> City</h4>
+            <span class="subText">{{city}}</span>
+          </div>
+  
+          <div class="rowCol">
+            <h4> <i class="icon-Location text-secondary"></i> Address</h4>
+            <address class="subText">
+             {{address}}
+            </address>
+          </div>
+        </div>
+        <div class="col-md-1 d-flex justify-content-center">
+          <div class="border-left"></div>
+        </div>
+        <!-- Todo: will be used later-->
+        <div class="col-md-6" *ngIf="this.role === 'client'">
+          <div class="rowCol m-0" >
+            <h4>Bucket Info</h4>
+           
+            <div class="subRowCol">
+              <span class="farmName subText">Approved: {{bucketApproveList?.length}} </span>
+              <!-- <h5><i class="icon-Logistics text-secondary"></i> {{bucketApproveList?.length}} </h5>
+              <ul class="shade--list list-unstyled">
+                <li>- Shed 01</li>
+                <li>- Shed 02</li>
+                <li>- Shed 03</li>
+                <li>- Shed 04</li>
+                <li>- Shed 05</li>
+                <li>- Shed 06</li>
+              </ul> -->
+            </div>
+            <div class="subRowCol" *ngFor="let reject of bucketRejectedList">
+              <span class="farmName subText">Rejected: {{bucketRejectedList?.length}} </span>
+              <!-- <ul class="shade--list list-unstyled">
+                <li>- {{bucketRejectedList?.length}}</li>
+                <li>- Shed 02</li>
+                <li>- Shed 03</li>
+                <li>- Shed 04</li>
+                <li>- Shed 05</li>
+                <li>- Shed 06</li>
+              </ul> -->
+            </div>
+            <div class="subRowCol" *ngFor="let pending of bucketPendingList">
+              <span class="farmName subText">Pending: {{bucketPendingList?.length}} </span>
+              <!-- <ul class="shade--list list-unstyled">
+                <li>- {{bucketRejectedList?.length}}</li>
+                <li>- Shed 02</li>
+                <li>- Shed 03</li>
+                <li>- Shed 04</li>
+                <li>- Shed 05</li>
+                <li>- Shed 06</li>
+              </ul> -->
+            </div>
+          </div>
+        </div>
+              <!-- Todo: will be used later-->
+        <div class="contact-btn--list d-flex align-items-center justify-content-end w-100 pt-5" *ngIf="false">>
+          <button class="icon-Chat"></button>
+          <button class="icon-Call"></button>
+          <button class="icon-Phone"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,13 @@
+<app-header2></app-header2>
+<div class="container-view mt-5">
+    <div class="row pl-5 pr-5 ">
+        <div class="col-lg-3" *ngFor="let jwelery of jweleryList">
+            <div class="image">
+            <img [src]="jwelery.image" class="h-100 w-100">
+            <h2 (click)="onSelectJwelery(jwelery, i)"><span>View</span></h2>
+            <!-- <button class='btn' (click)="onSelectJwelery(jwelery, i)">View</button> -->
+        </div>
+        </div>
+       
+    </div>
+</div>

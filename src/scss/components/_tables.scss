@@ -1,0 +1,53 @@
+//
+// Basic Bootstrap table
+//
+
+.table {
+    width: 100%;
+    margin-bottom: $spacer;
+    color: $table-color;
+    background-color: transparent; // Reset for nesting within parents with `background-color`.
+    &.equal-width {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+    }
+  
+    th {
+      color: $body-color;
+    }
+    th,
+    td {
+      padding: $table-cell-padding;
+      vertical-align: top;
+      border-top: none;
+    }
+    td {
+      height: 75px;
+      padding-top: $table-cell-padding-lg;
+      padding-bottom: $table-cell-padding-lg;
+      vertical-align: middle;
+    }
+  
+    thead th {
+      vertical-align: bottom;
+      border-bottom: none;
+    }
+  
+    tbody + tbody {
+      border-top: none;
+    }
+  }
+  
+  
+  //
+  // Condensed table w/ half padding
+  //
+  
+  .table-sm {
+    th,
+    td {
+      padding: $table-cell-padding-sm;
+    }
+  }
+  

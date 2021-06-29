@@ -1,0 +1,35 @@
+// .nav-link.active, .nav-pills .show > .nav-link {
+//   background-color: #CD853F !important;
+//   color: white !important;
+//   border-radius: 0;
+//   border: 3px solid #CD853F;
+//   padding-bottom: 2px;      
+// }
+// .nav-link {
+//   margin-bottom: 25px !important;
+//   color: #CD853F !important;
+//   border: 3px solid #CD853F !important;      
+// }
+// .nav-tabs{
+//   border-bottom: 0 !important;
+// }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: green !important;
+  color: white !important;
+  border-radius: 0;
+  border-bottom: 3px solid green;
+  padding-bottom: 2px;
+}
+.nav-link {
+  margin-bottom: 25px !important;
+  color: gray !important;
+  border: 3px solid green !important;   
+}
+.nav-tabs .nav-link{
+  border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+}
+.nav-tabs .nav-link.active {
+  border: 6px solid #9f8148 !important;
+}

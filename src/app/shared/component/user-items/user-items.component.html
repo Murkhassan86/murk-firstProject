@@ -1,0 +1,57 @@
+<div class="card custom-box-shadow mt-5 w-100" *ngFor="let bucket of pendingStatusList; let i = index; ">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-10">        
+      
+                    <p><strong>Category:</strong><span> {{bucket?.category}} </span></p>
+                    <p><strong>Price:</strong><span> {{bucket?.price}} </span></p>
+                    <p><strong>Condition:</strong><span> {{bucket?.condition}} </span></p>
+                   <p><strong><span class="readMore" (click)="open(bucketDetail, bucket, i)">Read More...</span></strong></p>
+            
+            </div>
+        </div>
+        <div class="row mt-4 justify-content-end">
+            <button class="btn btn-outline-info">Approve</button>
+            <button class="btn btn-outline-danger">Reject</button>
+        </div>
+        <!-- <div class="row mt-4 justify-content-end">
+            <button 
+            class="btn btn-md d-flex align-items-center justify-content-center font--sm btn-rounded"
+            [ngClass]="{'btn-outline-info': bucket?.status === 'pending', 'btn-outline-primary': bucket?.status === 'Approved', 'btn-outline-danger': bucket?.status === 'rejected'}"
+            [disabled]="bucket?.status === 'Approved'" (click)="approve(bucket, i)">
+            <span class="" *ngIf="bucket?.status === 'Approved'">Approved</span>
+            <span class="" *ngIf="bucket?.status !== 'Approved' && bucket?.status !== 'rejected'">Approve</span>
+            <span class="" *ngIf="bucket?.status === 'Rejected'">Rejected</span> 
+          </button>
+           <button  class="btn btn-outline-danger btn-rounded font--sm justify-content-center" (click)="open(rejectionReason)">
+              Reject
+          </button> 
+          <button class="btn btn-outline-danger btn-rounded font--sm justify-content-center" *ngIf="bucket?.status !== 'Approved' && bucket?.status !== 'rejected' && bucket?.status !== 'pending'" (click)="deleteBucket(bucket, i, rejectionReason)">Reject</button>
+          <p class="text-uppercase p-1"  *ngIf="apiStatus && bucketUser[i]">{{ apiStatus}}</p>
+            
+        </div> -->
+    </div>
+</div>
+
+<div class="card custom-box-shadow mt-5 w-100" *ngFor="let bucket of pendingStatusList; let i = index; ">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-10">        
+      
+                    <p><strong>Category:</strong><span> {{bucket?.category}} </span></p>
+                    <p><strong>Price:</strong><span> {{bucket?.price}} </span></p>
+                    <p><strong>Condition:</strong><span> {{bucket?.condition}} </span></p>
+                   <p><strong><span class="readMore" (click)="open(bucketDetail, bucket, i)">Read More...</span></strong></p>
+            
+            </div>
+        </div>
+        <div class="row mt-4 justify-content-end">
+            <button class="btn btn-outline-info">Approve</button>
+            <button class="btn btn-outline-danger">Reject</button>
+        </div>
+
+
+
+
+
+      

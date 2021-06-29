@@ -1,0 +1,205 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+
+$white:    #fff;
+$black:    #232A34;
+$blue:    #4680FF;
+$dark-blue:    #2a94db;
+$darkLight-blue:    #47C2EC;
+$light-blue:    #EFF4FF;
+$lighter-blue:    #BACFFC;
+$blue-shade:    #F5F8FF;
+$blue-shade--hover:    #EAF1FF;
+$orange:   #FF7511;
+$yellow:   #F8BA31;
+$green:   #95C063;
+$dark-green:   #2F6D5C;
+$lightgreen:   #00FF66;
+$purple:   #4B296D;
+$red:   #FF3737;
+$dark-red:   #ca4848;
+$pink:   #FA00FF;
+$gray:     #8F909A;
+$light-gray:     #E1E8F8;
+$card-font:     #646675;
+$gray--fog:     #EBEBEB;
+$gray--hover:     #FBFBFB;
+$input-placeholder-color: #BFBFBF;
+$gray-300: #dee2e6;
+$gray-600: #f0f0f0;
+$gray-900: #0a0a0a;
+$gray-800: #343a40;
+
+$body-bg:  $white;
+$dashboard-container-bg:  #F5F6F8;
+
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-700: #495057 !default;
+
+
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$red--shade: #ff947c;
+$orange:  #fd7e14 !default;
+$green:   #28a745 !default;
+$green--shade: #46a775;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$colors: ();
+$colors: map-merge((
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "font":       $gray,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+), $colors);
+
+$primary:       $green;
+$secondary:     $blue;
+$success:       $dark-green;
+$bg-success:    $green--shade;
+$info:          $cyan;
+$warning:       $yellow;
+$danger:        $red;
+$bg-danger:     $red--shade;
+$light:         $gray-100;
+$dark:          $black;
+$font:          $gray;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "font":       $gray,
+  "white":      $white,
+  "lighter":    $blue-shade
+), $theme-colors);
+
+
+$link-color:          theme-color("dark");
+$body-color:          theme-color("dark");
+$table-color:             $card-font;
+$input-padding-y:         .715rem;
+$input-padding-x:         .75rem;
+$input-height:            calc(#{$input-line-height * 1em} + #{$input-padding-y * 2} + #{$input-height-border});
+$btn-padding-y:               .60rem;
+$btn-padding-x:               .715rem;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+$nav-tabs-border-color:             $white;
+$nav-tabs-font-size:                1rem;
+$nav-tabs-border-width:             2px;
+$nav-link-padding-y:                1rem;
+$nav-link-padding-x:                3rem;
+// stylelint-disable value-keyword-case
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Montserrat, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base:            'Roboto', sans-serif;
+// stylelint-enable value-keyword-case
+
+$font-size-base:              1rem; // Assumes the browser default, typically `16px`
+$font-size-xl:                $font-size-base * 1.8;
+$font-size-lg:                $font-size-base * 1.25;
+$font-size-md:                $font-size-base * 1.125;
+$font-size-sm:                $font-size-base * .875;
+
+$spacer: 1rem;
+$spacers: ();
+$spacers: map-merge((
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3),
+  6: ($spacer * 4.5),
+  7: ($spacer * 6),
+  8: ($spacer * 7.5),
+  9: ($spacer * 9),
+  10: ($spacer * 10.5)
+), $spacers);
+
+$base-min-width: 320px;
+
+// This is the default html and body font-size for the base rem value.
+$rem-base: 16px;
+
+$h1-font-size:                $font-size-base * 2.25;
+$h2-font-size:                $font-size-base * 1.5;
+$h3-font-size:                $font-size-base * 1.25;
+$h4-font-size:                $font-size-base * 1.15;
+$h5-font-size:                $font-size-base * 1;
+$h6-font-size:                $font-size-base;
+
+$headings-margin-bottom:      $spacer / 2;
+$headings-font-family:        null;
+$headings-font-weight:        400;
+$headings-line-height:        1.2;
+$headings-color:              theme-color("dark");
+
+// Allows for customizing button radius independently from global border radius
+$btn-border-radius:           60px;
+$btn-border-radius-lg:        70px;
+$btn-border-radius-sm:        50px;
+$btn-font-size:               18px;
+
+
+$modal-lg:                          900px;
+//$modal-header-padding-y:            70px;
+//$modal-header-padding-x:            1rem;
+
+$input-border-width:                2px;
+$box-shadow:                 0 5px 10px rgba(231, 231, 231, 0.25);
+$box-shadow-md:                 0 3.99113px 7.98226px rgba(231, 231, 231, 0.25);
+$box-shadow-lg:                 0px 19.9557px 19.9557px rgba(0, 0, 0, 0.15);
+
+$navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$blue}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"), "#", "%23");
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  xsm: 360px,
+  msm: 480px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+$nav-pills-border-radius:           0;
+$nav-pills-link-active-color:       theme-color(primary);
+$nav-pills-link-active-bg:          $white;
+$table-accent-bg:                   $gray--hover;
+$table-cell-padding:                .75rem;
+$table-cell-padding-lg:             16px;
+$table-cell-padding-sm:             .3rem;

@@ -1,0 +1,263 @@
+// stylelint-disable selector-no-qualifying-type
+@import "src/scss/base/index";
+// stylelint-disable selector-no-qualifying-type
+
+//
+// Base styles
+//
+//$btn-border-radius: 0;
+a:hover {
+  text-decoration: none;
+}
+.custom-btn-block {
+  border-radius: 5px;
+  padding: 15px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+}
+.custom-btn-block-sm {
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 15px;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+}
+.custom-btn-block:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 1px 0px 0px;
+}
+.btn-green {
+  background-color: #2ecc71;
+  box-shadow: 0px 5px 0px 0px #15B358;
+}
+
+.btn-green:hover {
+  background-color: #48E68B;
+  color: white;
+}
+.btn-blue {
+  background-color: #55acee;
+  box-shadow: 0px 5px 0px 0px #3C93D5;
+}
+
+.btn-blue:hover {
+  background-color: #6FC6FF;
+}
+.btn {
+  display: inline-block;
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  color: $body-color;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: $btn-border-width solid transparent;
+  min-width: 184px;
+  text-transform: uppercase;
+  @include media-breakpoint-down(sm) {
+    font-size: 15px !important;
+  }
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+  @include transition($btn-transition);
+
+  @include hover {
+    color: $body-color;
+    text-decoration: none;
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: $btn-focus-box-shadow;
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+    @include box-shadow();
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    @include box-shadow($btn-active-box-shadow);
+
+    &:focus {
+      @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+    }
+  }
+  &.btn-primary{
+    color: theme-color(light);
+  }
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset:disabled a.btn {
+  pointer-events: none;
+}
+
+.btn-icon {
+  border: 0;
+  background: transparent;
+}
+//
+// Alternate buttons
+//
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  @include hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+  }
+
+  // No need for an active state here
+}
+
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+}
+
+.btn-sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+}
+
+//
+// Block button
+//
+
+.btn-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn-block {
+    margin-top: $btn-block-spacing-y;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+.btn-play {
+  width: 77px;
+  height: 77px;
+  border-radius: 50%;
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $white;
+  &.sm {
+    width: 64px;
+    height: 64px;
+    &:before {
+      border-width: 15px 0 15px 18px;
+    }
+  }
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 19px 0 19px 22px;
+    border-color: transparent transparent transparent theme-color(secondary);
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.btn-iconsText {
+  border: 0;
+  min-width: 60px;
+  background: $blue-shade;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 40px;
+  padding: 10px 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  > i {
+    font-size: 16px;
+    margin: 0 10px;
+    color: theme-color(secondary);
+    &.sm {
+      font-size: 12px;
+    }
+    &.lg {
+      font-size: 20px;
+    }
+  }
+  &:hover {
+    background: theme-color(secondary);
+    color: $white;
+    > i {
+      color: $white;
+    }
+  }
+}

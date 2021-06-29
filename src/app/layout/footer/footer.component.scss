@@ -1,0 +1,25 @@
+span > a:hover {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+
+
+}
+span > a {
+    color: brown;
+}
+.footer-span {
+    color: brown;
+
+}
+.footer-span > span:hover {
+    color: black;
+    cursor: pointer;
+}
+a {
+    cursor: pointer;
+}
+// span {
+//     word-spacing: 10px;
+// }
+

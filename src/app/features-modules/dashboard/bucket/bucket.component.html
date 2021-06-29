@@ -1,0 +1,215 @@
+<div class="container-fluid pl-5 pr-5 w-100">
+
+    <div class="row mt-3">
+<div class="col-lg-9">
+    <h3 class="p-t-30">Your Bucket Info</h3>
+</div>
+<div class="col-lg-3">
+    <button class="btn btn-primary" (click)="open(bucketModal, 'add')"><i class="icon-Add"></i>Add in Bucket</button>
+</div>
+</div>
+    <mat-expansion-panel *ngFor="let bucket of bucketList; let i = index" class="mt-3">
+     <mat-expansion-panel-header>
+    <mat-panel-title>
+    <h3 [ngClass]="{'text-danger' : bucket?.status === 'rejected', 'text-success' : bucket?.status === 'Approved', 'text-muted' : bucket?.status === 'pending'}">
+    {{bucket?.category}}</h3>
+ 
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+     <img [src]="bucket?.image" class="w-50">
+     <span style="margin-left: 90%">
+        <i class="icon-Edit" *ngIf="bucket?.status === 'pending'" (click)="editBucket(bucket, i, bucketModal)"></i>
+        <i class="icon-Delete ml-3" (click)="deleteBucket(bucket, i)"></i>
+        <i class="icon-GridView ml-3" (click)="viewBucket(viewBucketInfo, bucket)"></i>
+       </span>
+    </mat-expansion-panel>
+       
+    
+                <mat-expansion-panel *ngIf="bucket?.status === 'rejected'">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Rejection Reason
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>
+                        {{bucket?.reason}}
+                    </p>
+                </mat-expansion-panel>
+           
+</div>
+<ng-template size="lg" #bucketModal let-modal>
+    <div class="modal-header border-0">
+      <h1 class="modal-title text-center flex-fill p-t-50 p-b-20" id="modal-basic-title02"> {{isEdit? 'Update Bucket' : 'Create Bucket'}}</h1>
+      <button type="button" class="close icon-Cross" aria-label="Close"
+        (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body row justify-content-center">
+      <form class="col-sm-7 col-md-12 col-lg-12 m-b-80 pl-5 pr-5" [formGroup]="bucketForm" >
+          <div class="row mt-3">
+              <div class="col-lg-6">
+                  <label for="category">Select Category</label>
+                  <div class="form-group custom-form-group">
+                      <select class="form-control custom-form-control" formControlName="category" (change)="onChangeCategory($event.target.value)">
+                          <option value="dress">Dresses</option>
+                          <option value="jwelery">Jwelery</option>
+                          <option value="foot-wear">Foot Wear</option>
+                      </select>
+                      <span *ngIf="(this.bucketForm.get('category').touched || submitted) && this.bucketForm.get('category').error?.required" class="text-danger">
+                          Please Select Category
+                      </span>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <label for="price">Price</label>
+                  <div class="form-group custom-form-group">
+                      <input type="text" class="form-control custom-form-control" placeholder="Price that You want to sell In" formControlName="price">
+                      <span *ngIf="(this.bucketForm.get('price').touched || submitted) && this.bucketForm.get('price').error?.required" class="text-danger">
+                        Please Enter Price in PKR
+                    </span>
+                    </div>
+              </div>
+              <div class="col-lg-6" *ngIf="false">
+                  <label for="rate">Item's Condition</label>
+                  <div class="form-group custom-form-group">
+                      <input type="number" class="form-control custom-form-control" placeholder="Give rate of your item's condition out of 10" formControlName="condition">
+                      <span *ngIf="(this.bucketForm.get('condition').touched || submitted) && this.bucketForm.get('condition').error?.required" class="text-danger">
+                        Please Enter Item's Condition
+                    </span>
+                    </div>
+              </div>
+              <div class="col-lg-6">
+                <label for="color">Color</label>
+                <div class="form-group custom-form-group">
+                    <input type="text" class="form-control custom-form-control" placeholder="Item's Color" formControlName="color">
+                    <span *ngIf="(this.bucketForm.get('color').touched || submitted) && this.bucketForm.get('color').errors?.required" class="text-danger">
+                        Please Enter Color
+                    </span>
+                </div>
+              </div>
+              <div class="col-lg-6" *ngIf="this.selectedCategory === 'dress'">
+              <label for="fabric">Fabric</label>
+              <div class="form-group custom-form-group">
+                  <select class="form-control custom-form-control" formControlName="fabric">
+                      <option selected disabled>Select item fabric</option>
+                      <option *ngFor="let fabrics of fabricList" [value]="fabrics"> {{fabrics}} </option>
+                  </select>
+                  <span *ngIf="(this.bucketForm.get('fabric').touched || submitted) && this.bucketForm.get('fabric').errors?.required" class="text-danger">
+                    Please Select Item Fabric
+                </span>
+              </div>
+          </div>
+          <div class="col-lg-6" *ngIf="this.selectedCategory === 'foot-wear'">
+            <label for="size">Select Size</label>
+            <div class="form-group custom-form-group">
+                <select class="form-control custom-form-control" formControlName="size">
+                    <option selected disabled>Select Shoes Size</option>
+                    <option *ngFor="let size of shoesSizes" [value]="size"> {{size}} </option>
+                </select>
+            </div>
+        </div>
+          <div class="col-lg-6" *ngIf="selectedCategory !== 'jwelery'">
+            <label for="age">Select Age</label>
+            <div class="form-group custom-form-group">
+                <select class="form-control custom-form-control" formControlName="age">
+                    <option selected disabled>Select item for Age in between</option>
+                    <option *ngFor="let ages of ageGroup" [value]="ages"> {{ages}} </option>
+                </select>
+                <span *ngIf="(this.bucketForm.get('age').touched || submitted) && this.bucketForm.get('age').errors?.required" class="text-danger">
+                    Please Select Ages
+                </span>
+            </div>
+        </div>
+    </div>
+        <div class="row mt-3">
+            <div class="col-lg-12">
+            <label for="description"> Description</label>
+                <div class="form-group custom-form-group">
+                    <textarea rows="5" cols="80" formControlName="description" placeholder="Add some detail about item"></textarea>
+                </div>
+            </div>
+        </div>
+          <div class="row mt-3">
+              <div class="col-lg-12">
+                  <div class="form-group custom-form-group">
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Terms & Conditions
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>Once the item is approved, you will not be able to edit it. The price that you enter for selling also it cannot be changed.
+                          <span>Your item along with some details will be visible to all registered users once it will be approve by admin.</span>
+                      </p>
+                    
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="invalidCheck" formControlName="agreement">
+                        <label class="form-check-label" for="invalidCheck">Agree to terms and conditions
+                        </label>
+                    </div>
+                    <span *ngIf="(this.bucketForm.get('agreement').touched || submitted) && this.bucketForm.get('agreement').error?.required" class="text-danger">
+                        Terms & Conditions is required
+                    </span>
+                </mat-expansion-panel> 
+                  </div>
+              </div>
+          </div>
+        
+          <div class="row">
+            <div class="col-lg-4">
+                <label for="image">Upload Image</label>
+                <div class="form-group custom-form-group">
+                  <button type="submit" mat-stroked-mat-button (click)="filePicker.click()">  Pick Image</button>
+                  <input type="file" hidden #filePicker (change)="onImagePicker($event)" name="image" multiple = "">
+                </div>
+                <span *ngIf="(this.bucketForm.get('image').touched || submitted) && this.bucketForm.get('image').error?.required" class="text-danger">
+                    Please Select Image
+                </span>
+            </div>
+            <!-- <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;"> <br/> -->
+            <div class="col-lg-8">
+                <div class="image-preview" *ngIf="imagePreview !== ' ' &&  imagePreview && bucketForm.get('image').valid">
+                  <img [src]="imagePreview" [alt]="bucketForm.value.title">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <button class="btn btn-success btn-lg btn-block" (click)="createBucket()" *ngIf="!isEdit">Save</button>
+            <button class="btn btn-success btn-lg btn-block" (click)="updateBucket(bucketForm.value)" *ngIf="isEdit">Update</button>
+        </div>
+      </form>
+    </div>
+</ng-template>
+
+<ng-template size="sm" #viewBucketInfo let-modal>
+    <div class="modal-header border-0">
+      <h1 class="modal-title text-center flex-fill p-t-50 p-b-20" id="modal-basic-title02">Bucket Detail</h1>
+      <button type="button" class="close icon-Cross" aria-label="Close"
+        (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body justify-content-center">
+        <div class="row mt-3">
+        <app-data-blocks class="col-lg-4 justify-content-end" [title]="'Category'" [description]="bucketData.category"></app-data-blocks>
+        <app-data-blocks class="col-lg-4 justify-content-end" [title]="'Price'" [description]="bucketData.price"></app-data-blocks>
+        <app-data-blocks class="col-lg-4 justify-content-end"  [title]="'Color'" [description]="bucketData.color"></app-data-blocks>
+    </div>
+    <div class="row mt-3">
+        <app-data-blocks class="col-lg-4 justify-content-end" *ngIf="bucketData.category === 'foot-wear'" [title]="'Size'" [description]="bucketData.size"></app-data-blocks>
+        <app-data-blocks class="col-lg-4 justify-content-end" *ngIf="bucketData.category === 'dress'" [title]="'Fabric'" [description]="bucketData.fabric"></app-data-blocks>
+        <app-data-blocks class="col-lg-4 justify-content-end" *ngIf="bucketData.category !== 'jwelery'" [title]="'Age'" [description]="bucketData.age"></app-data-blocks>
+    </div>
+    <div class="row mt-3">
+        <app-data-blocks class="col-lg-6 justify-content-end" [title]="'Agreement'" [description]="bucketData.agreement"></app-data-blocks>
+        <!-- <app-data-blocks class="col-lg-4 justify-content-end" [title]="Image" [description] = "<img [src] = bucketData.image>"></app-data-blocks> -->
+        <app-data-blocks class="col-lg-4 justify-content-end" [title]="'Status'" [ngClass]="{'text-danger' : bucketData.status === 'rejected' , 'text-success' : bucketData.status === 'Approved', 'text-muted' : bucketData.status === 'pending'}" [description]="bucketData.status"></app-data-blocks>
+     </div>
+     <div class="row mt-3">
+        <app-data-blocks class="col-lg-4 justify-content-end" [title]="'Description'" [description]="bucketData.description"></app-data-blocks>
+     </div>
+     <div class="row mt-3">
+         <div class="col-lg-12">
+        <app-data-blocks class="col-lg-4 justify-content-end" [title]="'Rejection Reason'"  *ngIf="bucketData.status === 'rejected'" [description]="bucketData.reason"></app-data-blocks>
+     </div>
+    </div>
+</div>
+</ng-template>
