@@ -22,8 +22,7 @@ modalConfig: any = { size: 'lg' , ariaLabelledBy: 'available-persons-modal'};
 
   ngOnInit() {
     this.openModal.nativeElement.click();
-    this.loadBucketInfo();
-   
+    this.loadBucketInfo();  
   }
 
   loadBucketInfo() {
